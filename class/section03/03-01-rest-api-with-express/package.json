@@ -1,0 +1,10 @@
+{
+  "name": "03-01-rest-api-with-express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
