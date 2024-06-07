@@ -1,6 +1,7 @@
 // email.js
-
 import { getToday } from './utils.js';
+import nodemailer from 'nodemailer';
+import 'dotenv/config';
 
 export function checkEmail(myemail) {
     if (myemail === undefined || !myemail.includes("@")) {
@@ -27,6 +28,26 @@ export function getWelcomeTemplate({ name, age, school, createdAt }) {
     return mytemplate;
 }
 
-export function sendTemplateToEmail(myemail, result) {
-    console.log(`${myemail} 이메일로 가입환영템플릿 ${result}를 전송합니다!!!`);
+export async function sendTemplateToEmail(myemail, mytemplate) {
+    const EMAIL_USER = process.env.EMAIL_USER;
+    const EMAIL_PASS = process.env.EMAIL_PASS;
+    const EMAIL_SENDER = process.env.EMAIL_SENDER;
+
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.naver.com',
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: EMAIL_USER,
+            pass: EMAIL_PASS,
+        },
+    });
+
+    const result = await transporter.sendMail({
+        from: EMAIL_SENDER,
+        to: myemail,
+        subject: "[코드캠프] 가입을 축하합니다!!!",
+        html: mytemplate,
+    });
+    console.log(result);
 }
