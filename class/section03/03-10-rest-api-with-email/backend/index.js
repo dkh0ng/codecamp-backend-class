@@ -1,4 +1,3 @@
-// index.js
 import express from 'express';
 import { checkEmail, getWelcomeTemplate, sendTemplateToEmail } from './email.js';
 import { getToday } from './utils.js';

@@ -1,4 +1,3 @@
-// utils.js
 export function getToday() {
     const date = new Date();
     const yyyy = date.getFullYear();
