@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>회원가입 연습하기</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+          function zzz() {
+            const myphone = document.getElementById('myphone').value;
+            console.log('나의 핸드폰번호: ', myphone);
+    
+            axios.post('http://localhost:3000/tokens/phone', {
+                qqq: myphone,
+              })
+              .then((res) => {
+                console.log(res);
+                document.getElementById("result").innerText = res.data;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById("result").innerText = 'Error: ' + error.message;
+              });
+          }
+        </script>
+      </head>
+<body>
+    휴대폰번호: <input type="text" id="myphone" />
+    <button onclick="zzz()">인증하기</button><br />
+    <div id="result">인증상태</div>
+    <button>회원가입하기</button>
+</body>
+</html>
